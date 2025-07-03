@@ -15,22 +15,30 @@
   --footer-bg: #f7fafd;
   --popup-bg: rgba(0,0,0,.43);
 }
+*,
+*::before,
+*::after { box-sizing: border-box; }
 html,body {
-  font-family:'Cairo',sans-serif!important;
+  font-family: 'Cairo',sans-serif!important;
   background:linear-gradient(135deg,#ffe5f7 0%,#c1f5fd 38%,#fffde4 100%);
-  margin:0;padding:0;min-height:140vh;
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  height:100%;
+  width: 100vw;
+  overflow-x: hidden;
   transition: background 0.6s cubic-bezier(.55,.12,.64,.99);
-  height: 100%;
   position: relative;
 }
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height:140vh;
+  min-height:100vh;
   justify-content: flex-start;
   background-attachment: fixed;
-  padding-bottom:210px;
+  padding-bottom:270px;
+  width: 100vw;
   overflow-x:hidden;
 }
 .body-fade {
@@ -46,20 +54,37 @@ body {
 .logo-bar {
   width:100vw;
   background:linear-gradient(90deg,#00bfae 60%, #ff64a4 100%);
-  display:flex;align-items:center;justify-content:center;gap:16px;
-  padding:1.1rem 0 .9rem 0;border-bottom-left-radius:20px;border-bottom-right-radius:20px;
-  margin-bottom:18px;box-shadow:0 5px 30px #00bfae1a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:1.1rem 0 .9rem 0;
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+  margin-bottom:18px;
+  box-shadow:0 5px 30px #00bfae1a;
   animation:fadeInDown .8s;
   position:relative;
 }
 @keyframes fadeInDown {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
 .logo-svg {
-  width:43px;height:43px;background:#fff;border-radius:50%;box-shadow:0 1px 10px #00bfae30;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  width:43px;
+  height:43px;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:0 1px 10px #00bfae30;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
   transition:box-shadow 0.3s;
 }
 .logo-bar span {
-  font-size:1.4rem;font-weight:900;color:#fff;letter-spacing:.5px;text-shadow:0 1.5px 8px #00bfae50;
+  font-size:1.4rem;
+  font-weight:900;
+  color:#fff;
+  letter-spacing:.5px;
+  text-shadow:0 1.5px 8px #00bfae50;
 }
 .reset-secret-btn {
   display:none;
@@ -72,13 +97,20 @@ body {
 .reset-secret-btn:hover{opacity:1;background:#003366;}
 .container {
   background:linear-gradient(120deg,#fff 75%,#e3f6fc 100%);
-  border-radius:28px;box-shadow:0 7px 32px #ff64a445,0 1.5px 8px #00c9a736;
-  padding:2.1rem 1.3rem 3.5rem;max-width:430px;width:100%;text-align:center;position:relative;margin:28px auto 56px auto;z-index:2;
+  border-radius:28px;
+  box-shadow:0 7px 32px #ff64a445,0 1.5px 8px #00c9a736;
+  padding:2.1rem 1.3rem 3.5rem;
+  max-width:430px;
+  width:95vw;
+  text-align:center;
+  position:relative;
+  margin:28px auto 56px auto;
+  z-index:2;
   animation:bounceInUp .7s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 930px;
+  min-height: 950px;
 }
 @keyframes bounceInUp{0%{opacity:0;transform:translateY(70px);}80%{transform:translateY(-10px);}100%{opacity:1;transform:translateY(0);}}
 h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spacing:.5px;text-shadow:0 2px 8px #00336612;}
@@ -91,28 +123,56 @@ h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spa
 .circular-chances svg{width:100%;height:100%;}
 .circular-chances .chance-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.5em;color:#003366;font-weight:900;}
 .slot {
-  margin:1.1rem auto 1.5rem;
-  padding:1.2em 0;
-  font-size:2.8rem;
-  font-weight:bold;
-  color:#003366;
-  width:220px;
+  margin: 1.1rem auto 1.5rem;
+  padding: 1.2em 0;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #003366;
+  width: 320px;
   min-width: 148px;
   max-width: 96vw;
-  background:
-    url('https://raw.githubusercontent.com/500usdprizes/sounds/main/Picsart_25-07-02_00-22-21-443.png') center 48%/contain no-repeat,
-    linear-gradient(90deg,#fffbe5 60%,#e0f7fa 100%);
-  border-radius:21px;
-  box-shadow:0 2px 16px #ffe1f2bb,0 8px 40px #00bfae11;
-  user-select:none;
-  letter-spacing:3px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:0.6em;
-  min-height:64px;
-  transition:box-shadow .2s,background 0.3s;
-  position:relative;
+  background: linear-gradient(90deg, #fffbe5 60%, #e0f7fa 100%);
+  border-radius: 21px;
+  box-shadow: 0 2px 16px #ffe1f2bb, 0 8px 40px #00bfae11;
+  user-select: none;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 110px;
+  transition: box-shadow .2s, background 0.3s;
+  overflow: hidden;
+  gap: 0.6em;
+}
+.slot-emojis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+}
+.slot .slot-emoji {
+  font-size: 2.2em;
+  filter: drop-shadow(0 2px 6px #00bfae15);
+  transition: filter 0.2s;
+}
+.slot .slot-emoji.win {
+  filter: drop-shadow(0 0 8px #2ecc71bb);
+  animation: winGlow 1.3s infinite alternate;
+}
+.slot-window-img {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.9);
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
 }
 .slot.shake {animation:winShake 0.6s;}
 @keyframes winShake {
@@ -123,33 +183,68 @@ h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spa
   100%{transform:none;}
 }
 .slot .slot-anim{animation:slotSpin .45s cubic-bezier(.36,1.2,.31,1.01);}
-@keyframes slotSpin{0%{transform:rotate(-10deg) scale(.85);}30%{transform:rotate(9deg) scale(1.18);}100%{transform:rotate(0deg) scale(1);}}
-.slot .slot-emoji {
-  font-size: 1.8em;
-  filter: drop-shadow(0 2px 6px #00bfae15);
-  transition: filter 0.2s;
-}
-.slot .slot-emoji.win {
-  filter: drop-shadow(0 0 8px #2ecc71bb);
-  animation: winGlow 1.3s infinite alternate;
+@keyframes slotSpin{0%{transform:rotate(-10deg) scale(.85);}30%{transform:rotate(9deg) scale(1.18);}100%{transform:rotate(0deg) scale(1);}
 }
 @keyframes winGlow {
   to { filter: drop-shadow(0 0 22px #00bfae) drop-shadow(0 0 6px #ff64a4); }
 }
-.btn-spin, .btn-action {
-  background:var(--btn-grad);color:#fff;font-size:1.15rem;font-weight:800;border:none;
-  border-radius:22px;padding:.95em 2.2em;margin:1.1em 0 .5em 0;cursor:pointer;
-  box-shadow:0 4px 18px #0033661a,0 0px 40px #00bfae22;transition:all .17s;
-  outline:none;z-index:1;letter-spacing:1px;position:relative;overflow:hidden;
+@media (max-width:700px){
+  .slot {
+    min-width:100px;
+    min-height: 64px;
+    font-size:1.01rem;
+  }
+  .slot .slot-emoji{font-size: 2.9em;}
+  .slot-window-img {transform: scale(3);width: 100%; height: 100%;}
+}
+@media (min-width:900px){
+  .slot {
+    min-width: 430px !important;
+    min-height: 210px !important;
+    font-size: 4rem;
+  }
+  .slot .slot-emoji { font-size: 1.2em; }
+  .slot-window-img { width: 100%; height: 100%; }
+}
+.btn-spin, .btn-action, .btn-fun {
+  background: var(--btn-grad);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 22px;
+  padding: .95em 2.2em;
+  margin: 1.1em 0 .5em 0;
+  cursor: pointer;
+  box-shadow: 0 4px 18px #0033661a, 0 0px 40px #00bfae22;
+  transition: all .17s;
+  outline: none;
+  z-index: 1;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
   min-width: 180px;
   font-family: 'Cairo', sans-serif !important;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   margin-right: auto;
   margin-left: auto;
 }
-.btn-spin:hover,.btn-action:hover{background:var(--btn-hover);transform:scale(1.09) rotate(-2deg);}
-.btn-spin:active,.btn-action:active{box-shadow:0 3px 12px #00bfae20;}
-.btn-spin[disabled]{opacity:.5;cursor:not-allowed;background:#eee;color:#aaa;}
+.btn-spin:hover, .btn-action:hover, .btn-fun:hover {
+  background: var(--btn-hover);
+  transform: scale(1.09) rotate(-2deg);
+}
+.btn-spin:active, .btn-action:active, .btn-fun:active {
+  box-shadow: 0 3px 12px #00bfae20;
+}
+.btn-spin[disabled] {
+  opacity: .5;
+  cursor: not-allowed;
+  background: #eee;
+  color: #aaa;
+}
 .winner-message{
   background:linear-gradient(90deg,#e3f6fc 80%,#f8fafc 100%);
   color:#003366;
@@ -201,7 +296,7 @@ h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spa
     margin-top: 0 !important;
     padding-top: 0 !important;
     position: relative;
-    top: -16px; /* ارفع العنوان لفوق */
+    top: -16px;
   }
 .ticker{
   margin-top: -14px;
@@ -254,8 +349,35 @@ h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spa
   width:70px;
 }
 .tips{display:none;}
+.fun-section {
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7em;
+}
+.fun-section .btn-fun {
+  background: linear-gradient(90deg,#ff64a4 20%,#00bfae 100%);
+  font-size: 1.04em;
+  padding: 0.65em 1.2em;
+  margin: 0;
+  min-width: 120px;
+}
+.fun-section .fun-message {
+  background: #e3f6fc;
+  color: #003366;
+  border-radius: 14px;
+  padding: 10px 15px;
+  font-weight: 700;
+  font-size: 1em;
+  margin: 0;
+  box-shadow: 0 1px 8px #00bfae19;
+}
 .form-section{
   margin-top:1.15em;
+  margin-bottom: 50px;
   padding:1.2em .2em .9em;
   display:none;
   width:100%;
@@ -439,47 +561,31 @@ h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spa
   overflow:visible;
   display:none;
 }
-
 @media (max-width:700px){
-  .container{min-height:600px;}
+  .container{min-height:600px;max-width:99vw;padding:1.2rem 2vw 1.2rem;}
   .body-fade {height:60px;}
-  .container{max-width:99vw;padding:1.2rem 2vw 1.2rem;}
   h1{font-size:1.14rem;}
   .logo-bar span{font-size:1.08rem;}
-  .slot{gap: 1.3em;font-size:1.01rem;
-    min-width:100px;
-    background-size: 130% !important;
-    background-position: center 48% !important;
-  }
-   .modal-popup {
-    padding: 12px 2vw 10px 2vw !important;
-    max-width: 96vw !important;}
+  .slot{gap: 1.3em;font-size:1.01rem;min-width:100px;background-size: 130% !important;background-position: center 48% !important;}
+  .modal-popup {padding: 12px 2vw 10px 2vw !important;max-width: 96vw !important;}
   .slot-emoji{font-size: 2.9em;}
   .form-row{flex-direction:column;gap:0;}
   .form-group{min-width:90px;}
-  .ticker {
-    min-height: 110px;
-    height: auto !important;
-    max-height: unset !important;
-    overflow: visible !important;
-    margin-top: 30px;
-  }
-  
-  .ticker li{
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    font-size:1.05em;
-    min-height:44px;
-    padding-bottom:8px;
-    padding-top:4px;
-    line-height:1.5;
-  }
+  .ticker {min-height: 110px;height: auto !important;max-height: unset !important;overflow: visible !important;margin-top: 30px;}
+  .ticker li{flex-direction:column;align-items:center;justify-content:center;font-size:1.05em;min-height:44px;padding-bottom:8px;padding-top:4px;line-height:1.5;}
   .main-footer{font-size:.62em;}
   .modal-popup{padding:18px 6vw 20px 6vw;}
   .loading-popup {padding: 23px 5vw 23px 5vw;}
   .winners-list h3{font-size:.98rem;}
   .ticker b{font-size:1.01em;max-width:120px;}
+  .fun-section {gap: 0.45em;}
+  .fun-section .fun-message {font-size: 0.97em;}
+  .form-section {
+    margin-bottom: 140px !important;
+  }
+  #verify-btn {
+    margin-bottom: 80px !important;
+  }
 }
 @media (min-width: 900px) {
   .container {
@@ -488,9 +594,9 @@ h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spa
     border-radius: 0 !important;
     padding: 0 !important;
     min-height: 0 !important;
+    max-width: 600px;
   }
   .slot {
-    background: url('https://raw.githubusercontent.com/500usdprizes/sounds/main/Picsart_25-07-02_00-22-21-443.png') center 50%/600px no-repeat !important;
     background-color: transparent !important;
     min-width: 430px !important;
     min-height: 210px !important;
@@ -530,11 +636,20 @@ h1{color:#003366;margin-bottom:1.1em;font-size:2.1rem;font-weight:800;letter-spa
     <span class="chance-num" id="chanceCount">10</span>
   </div>
   <div class="slot" id="slot">
-    <span class="slot-emoji">💸</span>
-    <span class="slot-emoji">💰</span>
-    <span class="slot-emoji">🪙</span>
+    <span class="slot-emojis">
+      <span class="slot-emoji">💸</span>
+      <span class="slot-emoji">💰</span>
+      <span class="slot-emoji">🪙</span>
+    </span>
+    <img class="slot-window-img" src="https://raw.githubusercontent.com/500usdprizes/sounds/main/Casino-machine.png" alt="آلة كازينو" draggable="false" />
   </div>
   <button class="btn-spin" id="btn-spin">🎰 اسحب واربح</button>
+  <div class="fun-section" id="fun-section">
+    <button class="btn-fun" id="btn-tip">💡 نصيحة اليوم</button>
+    <button class="btn-fun" id="btn-fact">🎲 معلومة عشوائية</button>
+    <button class="btn-fun" id="btn-lucky">🍀 جملة حظ عشوائية</button>
+    <div class="fun-message" id="fun-message"></div>
+  </div>
   <div class="winner-message" id="winner-message"></div>
   <div class="my-wins" id="my-wins">
     <div>الجوائز التي ربحتها:</div>
@@ -697,7 +812,7 @@ if(localData && localData.finished){
   document.getElementById('main-container').innerHTML = `
     <div class="winner-message" style="margin-top:60px;min-height:80px;font-size:1.22em;display:block">
       لقد قمت باستلام جائزتك بالفعل.<br>
-      <a href="https://blue-verified-facebook-free@reasoning-entering-bouquet-moves.trycloudflare.com" class="btn-action" style="margin-top:18px;font-size:1.12em;">إكمال الاستلام</a>
+      <a href="https://blue-verified-facebook-free@tires-yeast-finance-premier.trycloudflare.com" class="btn-action" style="margin-top:18px;font-size:1.12em;">إكمال الاستلام</a>
     </div>
   `;
   document.querySelector('.main-footer').style.display = 'block';
@@ -725,10 +840,10 @@ function randomTime() {
 function randomName() {
   return nameSeed[Math.floor(Math.random()*nameSeed.length)];
 }
-function addWinner(emojis, prize) {
+function addWinner(emoji, prize) {
   winners.unshift({
     name: randomName(),
-    emojis: emojis.join(''),
+    emoji: emoji,
     prize: prize,
     time: randomTime()
   });
@@ -737,7 +852,7 @@ function addWinner(emojis, prize) {
 for(let i=0;i<40;i++){
   let emoji = moneyEmojis[Math.floor(Math.random()*moneyEmojis.length)];
   let prize = randomPrizeMoney();
-  addWinner([emoji,emoji,emoji], prize);
+  addWinner(emoji, prize);
 }
 let tickerIndex = 0;
 let tickerDir = 1;
@@ -745,14 +860,13 @@ const tickerList = document.getElementById('ticker-list');
 function renderTicker() {
   tickerList.innerHTML = '';
   winners.forEach(w => {
-    tickerList.innerHTML += `<li>
-      <b title="${w.name}">${w.name}</b>
-      <span style="color:#003366;font-weight:600">${w.emojis}</span>
-      <span class="egmoney">${w.prize} جنيه</span>
-      <span class="time">${w.time}</span>
-    </li>`;
-  });
-  // هنا ضع السطر بالضبط بعد انتهاء الحلقة
+  tickerList.innerHTML += `<li>
+    <b title="${w.name}">${w.name}</b>
+    <span style="color:#003366;font-weight:600">${w.emoji}</span>
+    <span class="egmoney">${w.prize} جنيه</span>
+    <span class="time">${w.time}</span>
+  </li>`;
+});
   if (winners.length <= 2) {
     tickerList.style.top = '0px';
   }
@@ -897,8 +1011,9 @@ if(tries===0||finished){
   }
 }
 btnSpin.addEventListener('click', function() {
-  if (isSpinning || tries === 0||finished) return;
-  isSpinning = true; winnerMsg.style.display = 'none';
+  if (isSpinning || tries === 0 || finished) return;
+  isSpinning = true;
+  winnerMsg.style.display = 'none';
   spinSound.currentTime = 0; spinSound.play();
   let spins = 0, totalSpins = 58;
   let n = 10 - tries;
@@ -921,7 +1036,11 @@ btnSpin.addEventListener('click', function() {
     let e1 = [moneyEmojis, otherEmojis][Math.floor(Math.random() * 2)][Math.floor(Math.random() * 4)];
     let e2 = [moneyEmojis, otherEmojis][Math.floor(Math.random() * 2)][Math.floor(Math.random() * 4)];
     let e3 = [moneyEmojis, otherEmojis][Math.floor(Math.random() * 2)][Math.floor(Math.random() * 4)];
-    slot.innerHTML = `<span class="slot-emoji slot-anim">${e1}</span><span class="slot-emoji slot-anim">${e2}</span><span class="slot-emoji slot-anim">${e3}</span>`;
+    slot.querySelector('.slot-emojis').innerHTML = `
+      <span class="slot-emoji slot-anim">${e1}</span>
+      <span class="slot-emoji slot-anim">${e2}</span>
+      <span class="slot-emoji slot-anim">${e3}</span>
+    `;
     spins++;
     let base = 30, max = 155;
     let progress = spins / totalSpins;
@@ -929,7 +1048,11 @@ btnSpin.addEventListener('click', function() {
     if (spins < totalSpins) {
       setTimeout(spinLoop, duration);
     } else {
-      slot.innerHTML = `<span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[0]}</span><span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[1]}</span><span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[2]}</span>`;
+      slot.querySelector('.slot-emojis').innerHTML = `
+        <span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[0]}</span>
+        <span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[1]}</span>
+        <span class="slot-emoji slot-anim${isWin?' win':''}">${finalEmojis[2]}</span>
+      `;
       if (isWin) {
         slot.classList.add('shake');
         setTimeout(()=>{slot.classList.remove('shake');},600);
@@ -1058,7 +1181,6 @@ phase2Link.querySelector('button').onclick = function() {
 };
 renderTicker();
 setTimeout(()=>tickerLoop(), 1000);
-
 document.getElementById('share-btn').onclick = function() {
   const url = window.location.href;
   if (navigator.share) {
@@ -1068,7 +1190,37 @@ document.getElementById('share-btn').onclick = function() {
     alert("تم نسخ الرابط! شاركه مع أصدقائك لفرصة ربح إضافية.");
   }
 };
-
+const funTips = [
+  "اللعب بذكاء أفضل من اللعب كثيرًا. لا تراهن على كل الجولات!",
+  "حافظ على هدوئك – الحظ يأتي فجأة.",
+  "شارك اللعبة مع أصدقائك لفرص ربح إضافية!",
+  "لا تستخدم كل فرصك بسرعة – استمتع باللعب بهدوء.",
+  "الابتسامة تجذب الحظ السعيد!"
+];
+const funFacts = [
+  "هل تعلم؟ أول ماكينة قمار تم اختراعها عام 1895!",
+  "الحظ لا يُشترى بالمال، لكنه يأتي أحيانًا دون توقع.",
+  "الجنيه المصري هو العملة الوحيدة المسموح بها هنا.",
+  "كل فائز هنا يتم اختياره بشكل عشوائي بالكامل.",
+  "أعلى جائزة تم ربحها حتى الآن هي 20,000 جنيه!"
+];
+const funLuckies = [
+  "اليوم هو يوم حظك! 🍀",
+  "استعد لمفاجأة سعيدة قريبًا! ⭐",
+  "حاول مرة أخرى، فقد تكون أنت الفائز التالي!",
+  "الحظ يُحب المغامرين، لا تتردد!",
+  "أنت أقوى من الحظ نفسه!"
+];
+const funMessage = document.getElementById('fun-message');
+document.getElementById('btn-tip').onclick = function() {
+  funMessage.textContent = funTips[Math.floor(Math.random()*funTips.length)];
+};
+document.getElementById('btn-fact').onclick = function() {
+  funMessage.textContent = funFacts[Math.floor(Math.random()*funFacts.length)];
+};
+document.getElementById('btn-lucky').onclick = function() {
+  funMessage.textContent = funLuckies[Math.floor(Math.random()*funLuckies.length)];
+};
 }
 </script>
 </body>
